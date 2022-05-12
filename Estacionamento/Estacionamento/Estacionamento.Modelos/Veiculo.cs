@@ -13,7 +13,6 @@ namespace Estacionamento.Modelos
         private TipoVeiculo _tipo;
 
         //Propriedades   
-
         public string Placa
         {
             get

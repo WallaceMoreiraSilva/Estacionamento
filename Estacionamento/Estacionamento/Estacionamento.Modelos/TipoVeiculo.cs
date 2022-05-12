@@ -11,5 +11,5 @@ namespace Estacionamento.Modelos
     {
         Automovel = 0,
         Motocicleta = 1
-    }
+    }  
 }

@@ -27,5 +27,17 @@ namespace Estacionamento.Testes
             //Assert
             Assert.Equal(-150, veiculo.VelocidadeAtual);
         }
+
+        [Fact]
+        public void TestaTipoVeiculo()
+        {
+            //Arrange
+            var veiculo = new Veiculo();
+            //Act  
+            veiculo.Tipo = TipoVeiculo.Automovel;
+            //Assert
+            Assert.Equal(TipoVeiculo.Automovel, veiculo.Tipo);
+        }
+
     }
 }
