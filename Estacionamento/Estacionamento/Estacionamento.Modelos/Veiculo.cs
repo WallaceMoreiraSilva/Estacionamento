@@ -1,18 +1,20 @@
 ﻿using Estacionamento.Modelos;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Estacionamento.Modelos
 {
     public class Veiculo
     {
-        //Campos    
+        //Campos      
         private string _placa;
         private string _proprietario;
         private TipoVeiculo _tipo;
+        private string _ticket;
 
-        //Propriedades   
+        //Propriedades
+        public string Ticket { get { return _ticket; } set { _ticket = value; } }
+        public string IdTicket { get; set; }
+
         public string Placa
         {
             get
@@ -48,7 +50,6 @@ namespace Estacionamento.Modelos
                     }
                 }
                 _placa = value;
-
             }
         }
         /// <summary>
@@ -66,10 +67,23 @@ namespace Estacionamento.Modelos
         public string Modelo { get; set; }
         public string Proprietario
         {
-            get; set;
+            get
+            {
+                return _proprietario;
+            }
+            set
+            {
+                if (value.Length < 3)
+                {
+                    throw new System.FormatException(" Nome de proprietário deve ter no mínimo 3 caracteres.");
+                }
+                _proprietario = value;
+            }
+
         }
         public DateTime HoraEntrada { get; set; }
         public DateTime HoraSaida { get; set; }
+
         public TipoVeiculo Tipo { get => _tipo; set => _tipo = value; }
 
         //Métodos
@@ -81,6 +95,24 @@ namespace Estacionamento.Modelos
         public void Frear(int tempoSeg)
         {
             this.VelocidadeAtual -= (tempoSeg * 15);
+        }
+
+        public void AlteraDados(Veiculo veiculoAlterado)
+        {
+            this.Proprietario = veiculoAlterado.Proprietario;
+            this.Modelo = veiculoAlterado.Modelo;
+            this.Largura = veiculoAlterado.Largura;
+            this.Cor = veiculoAlterado.Cor;
+        }
+
+        public override string ToString()
+        {
+            return $"Ficha do Veículo:\n " +
+                    $"Tipo do Veículo: {this.Tipo.ToString()}\n " +
+                    $"Proprietário: {this.Proprietario}\n" +
+                    $"Modelo: {this.Modelo}\n" +
+                    $"Cor: {this.Cor}\n" +
+                    $"Placa: {this.Placa}\n";
         }
 
         //Construtor
